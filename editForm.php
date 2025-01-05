@@ -3,7 +3,7 @@
     function editForm(){
         ob_start();
         ?>
-        <form method="POST" action="./actions/edit.php"
+        <form method="POST" action="./actions/edit.php" id="editModal"
         class="edit-form fixed flex items-center justify-center inset-0 z-50">
          <div class="fixed h-full w-full bg-gray-600 bg-opacity-50"
          onclick="ShowModal('edit', '')" >
@@ -30,8 +30,8 @@
                 </div>
           </div>
 
-            <?= InputStyle("Date: ", "date", "fa-calendar", "date", "date"); ?>
-            <?= InputStyle("Quantity: ", "number", "fa-list-ol", "quantity", "quan"); ?>
+            <?= InputStyle("Date: ", "date", "fa-calendar", "date", "consumptionDate"); ?>
+            <?= InputStyle("Quantity: ", "number", "fa-list-ol", "quantity", "quantity"); ?>
 
             <button name="updateData" type="submit" class="items-center text-white bg-green-500 hover:bg-green-600  rounded-lg text-sm p-2 shadow-lg">
                 Confirm

@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['updateData'])) {
     $new_name = trim($_POST["name"] ?? '');
     $new_cost = floatval($_POST["cost"] ?? 0);
     $new_category = trim($_POST["category"] ?? '');
-    $new_date = trim($_POST["date"] ?? '');
-    $new_quan = intval($_POST["quan"] ?? 0);
+    $new_date = trim($_POST["consumptionDate"] ?? '');
+    $new_quan = intval($_POST["quantity"] ?? 0);
     $newTotal_cost = floatval($new_cost * $new_quan);
 
     // Validate inputs

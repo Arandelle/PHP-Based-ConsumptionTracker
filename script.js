@@ -3,20 +3,33 @@ function ShowModal(mode, item) {
     const modal = document.getElementById("addModal");
     modal.classList.toggle("hidden");
   } else if (mode === "edit") {
-    const editModal = document.getElementById("editModal");
-    const editForm = editModal.querySelector(".edit-form");
+    try {
+      console.log("Item passed to ShowModal:", item);
+      const editModal = document.getElementById("editModal");
+      const editForm = editModal.querySelector(".edit-form");
 
-    // Populate form fields
-    editForm.querySelector('input[name="id"').value = item.ID;
-    editForm.querySelector('input[name="name"]').value = item.Name;
-    editForm.querySelector('input[name="cost"]').value = item.Cost;
-    editForm.querySelector('select[name="category"]').value = item.Category;
-    editForm.querySelector('input[name="date"]').value = item.ConsumptionDate;
-    editForm.querySelector('input[name="quan"]').value = item.Quantity;
+      // Check if we have the form and required fields
+      if (!editForm) {
+        throw new Error("Edit form not found");
+      }
 
-    editModal.classList.toggle("hidden");
+      // Populate form fields with null checks
+      const fields = ['id', 'name', 'cost', 'category', 'consumptionDate', 'quantity'];
+      fields.forEach(field => {
+        const input = editForm.querySelector(`[name="${field}"]`);
+        if (input && item[field] !== undefined) {
+          input.value = item[field];
+        }
+      });
+
+      editModal.classList.toggle("hidden");
+    } catch (error) {
+      console.error("Error showing edit modal:", error);
+      alert("There was an error loading the edit form. Please try again.");
+    }
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", (e) => {
  document.querySelectorAll('input[type="text"]').forEach((input) => {
